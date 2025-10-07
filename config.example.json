@@ -1,0 +1,16 @@
+{
+  "user_count": 10000,
+  "location_count": 5,
+  "min_buildings_per_location": 4,
+  "max_buildings_per_location": 6,
+  "min_rooms_per_building": 10,
+  "max_rooms_per_building": 50,
+  "curious_user_percentage": 0.05,
+  "cloned_badge_percentage": 0.001,
+  "primary_building_affinity": 0.7,
+  "same_location_travel": 0.29,
+  "different_location_travel": 0.01,
+  "output_format": "json",
+  "seed": null,
+  "user_profiles_output": null
+}

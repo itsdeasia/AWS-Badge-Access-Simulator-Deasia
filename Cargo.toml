@@ -1,0 +1,154 @@
+# Cargo.toml specifies your Rust crate's metadata
+#
+# There are several options available to you for customizing your package
+# and providing supplementary metadata. They are documented in the Manifest
+# page of the Cargo reference:
+#
+#   https://doc.rust-lang.org/cargo/reference/manifest.html
+#
+# A particularly important key is [workspace]. As your project grows, you may
+# wish to refactor it into multiple crates. Workspaces are the mechanism for
+# doing so. They are also documented in the reference:
+#
+#  https://doc.rust-lang.org/cargo/reference/workspaces.html
+#
+
+[package]
+name = "amzn-career-pathway-activity-rust"
+edition = "2021"
+homepage = "https://code.amazon.com/packages/DetectionEngineeringChallengeRust"
+repository = "ssh://git.amazon.com/pkg/DetectionEngineeringChallengeRust"
+
+# Brazil packages that provide a Rust binary crate primarily rely on the Brazil
+# version set to identify which binary to ship to dependent packages. The version
+# number here is purely informational.
+#
+# Brazil packages that provide a Rust library crate have two version numbers:
+#
+#  - the Brazil major version, which is specified in Config
+#  - the Cargo crate version, which is specified here
+#
+# In general, the Brazil major version should reflect the Cargo version only up
+# to and including the first non-zero value. So if your Cargo version is 0.1.2,
+# the Brazil major version should be 0.1. If your Cargo version is 1.7.2, the
+# Brazil major version should be 1 or 1.x. This way, both version numbers
+# accurately reflect releases that are considered "compatible"
+# (https://doc.rust-lang.org/cargo/reference/resolver.html#semver-compatibility),
+# and consumers will automatically pick up changes within a major version
+# without requiring manual action.
+#
+# When it comes to deciding to increment your Cargo version number, consult the
+# Semantic Versioning guide in the Cargo documentation:
+#
+#   https://doc.rust-lang.org/cargo/reference/semver.html
+#
+# Broadly speaking, a breaking change increments the first number (the _major
+# version_), a change that modifies the public interface of the crate
+# increments the middle number (the _minor version_), and internal-only changes
+# increment the last number (the _patch version_). The patch version is
+# automatically managed by CargoBrazil, and should always be set to 0.
+#
+# In the context of Brazil, since we can re-build dependencies and thus check
+# whether a change is _actually_ breaking, you can generally get away with
+# making changes minor rather than major. In fact, since dependencies are
+# _always_ re-built when you put out a new build of a package, you rarely need
+# to increment your version number at all.
+version = "0.1.0"
+
+# Setting publish to `["brazil"]` or `false` prevents the accidental publishing of
+# your code to the (public) registry at crates.io, as described in these documents:
+#
+#   https://doc.rust-lang.org/cargo/reference/manifest.html#the-publish--field-optional
+#   https://rust-lang.github.io/rfcs/2141-alternative-registries.html#publishing-to-another-registry-preventing-unwanted-publishes
+#
+# To make your code available as a dependency to others within Amazon, ensure that
+# "brazil" is included in the publish setting. If you have a custom build script,
+# you must also ensure that it runs `cargo brazil publish`.
+#
+# Setting publish to false prevents Amazonians from specifying your package's crate
+# as a dependency, but does not prevent them from installing binaries that your
+# package produces.
+#
+# Here is a small table outlining the differences:
+#
+#   publish = false              # unavailable to others
+#   publish = ["brazil"]         # available internally
+#   publish = ["crates-io"]      # can be published to crates.io
+#
+# Those who knowingly wish to publish their code publicly will must ensure
+# that the package complies with the Open Source Policy. Further documentation:
+#
+#   https://w.amazon.com/bin/view/Open_Source/Distributions/Process/
+#   https://inside.amazon.com/en/services/legal/us/opensource/pages/opensourcepolicy.aspx#amz_section02
+#
+# crates.io also requires that you add additional metadata to this file, such as
+# the code's license. The Publishing page of the Cargo book provides more details:
+#
+#   https://doc.rust-lang.org/cargo/reference/publishing.html
+#
+# Your team will also need a process for when and how to run `cargo publish` in an
+# environment that has access to the internet (the build fleet is network-sandboxed)
+# and which can provide the necessary crates.io credentials.
+#
+publish = false
+
+# CargoBrazil requires that the following paths be excluded from publication, to avoid leaking
+# private Brazil package files to dependents.
+exclude = ['/build', '/Config', '/build-tools/']
+
+[dependencies]
+# Dependencies from crates.io largely work the way they do outside of Amazon.
+# However, Brazil only has access to an Amazon-internal mirror of crates.io. The
+# mirror excludes crates with licenses that are incompatible with policy. See the
+# "Access to third-party crates" for more details:
+#   https://builderhub.corp.amazon.com/docs/brazil/user-guide/brazilrust.html#access-to-third-party-crates
+#
+# General guidance on handling Cargo dependency requirements:
+#   https://docs.hub.amazon.dev/languages/rust/howto-cargo-dependency-requirements/
+#
+#
+# _Note:_ if you create a custom build script, it must include a `cargo brazil fetch`
+# step to access dependencies listed here.
+
+# Core dependencies for badge access simulator (synchronous batch processing)
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+rand = "0.8"
+uuid = { version = "1.0", features = ["v4", "serde"] }
+clap = { version = "4.0", features = ["derive"] }
+thiserror = "1.0"
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+
+# Error handling
+anyhow = "1.0"
+
+[dev-dependencies]
+tempfile = "3.0"
+
+# Imports from first-party dependencies provided by Brazil packages all start
+# with amzn-, but otherwise work the same as crates.io dependencies. You will
+# generally use "*" rather than a specific _Cargo_ version number as listed in
+# Cargo.toml, and instead define version based on which major version of the
+# package is declared in your Brazil Config file (and which commmit of that package
+# is built into your versionset).
+#
+# For example, if Rust-MetricWriter 0.1 and Rust-Metrics 0.1 are added as a dependency in Config:
+# amzn-metrics = "*"
+# amzn-metric-writer = "*"
+
+# By default, debug info is off for the _release_ profile.
+# If you need effective debugging/profiling in production,
+# set the `debug` option to `"limited"`.
+# `"limited"` has the minimal amount of debug info for backtraces
+# while maintaining module-level info.
+# More options are documented in the Cargo reference:
+#
+#   https://doc.rust-lang.org/cargo/reference/profiles.html#debug
+#
+[profile.release]
+# debug = "limited"
