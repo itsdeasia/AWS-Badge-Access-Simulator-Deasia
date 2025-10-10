@@ -9,7 +9,7 @@ Users at this company are assigned badges which grant them access to certain roo
 Create a repeatable method (program/code/process) to identify users that appear to have their badge cloned such that they appear in multiple geographic locations at the same time.  Use the --user-profiles-output option to get an answer key for each user to validate your results.
 
 ## Bonus challenge 1
-Create a repeatable way to identify curious users who are trying to access rooms that they are not authorized ot access
+Create a repeatable way to identify curious users who are trying to access rooms that they are not authorized to access
 
 ## Bonus challenge 2
 Determine the type of each room based on user behavior, when they use that room, and how long they linger.
