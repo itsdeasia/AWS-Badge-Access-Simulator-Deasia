@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Amazon AWS Security Career Pathway Activity: Badge Access Simulator
 
 This code is a Badge Access Simulator that generates days of simulated badge events to mimic real-world security badge access patterns. The system simulates thousands of users accessing facilities across multiple geographical locations with behavioral patterns, authorization violations, and security anomalies including impossible traveler scenarios.  This simulation is intended to be used to complete the AWS Security Career Pathway Activity below.
@@ -247,3 +248,7 @@ See the `examples/` directory for usage examples:
 - `user_profile_demo.rs`: User behavior examples
 - `impossible_traveler_demo.rs`: Anomaly detection examples
 - `streaming_demo.rs`: Event streaming examples
+=======
+# AWS-Badge-Access-Simulator-Deasia
+My customized version of the AWS Badge Access Simulator — includes both security challenges and anomaly detection improvements. Created by Principal Security Engineer Karl Anderson
+>>>>>>> 168368f842ef20e7c6c241652ede563258784180
