@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 🧠 Deasia Craig’s Enhanced AWS Badge Access Simulator
 
 This repository contains my customized version of the **AWS Badge Access Simulator**, originally created by Amazon’s Security Engineering team.  
