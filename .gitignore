@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Rust build and dependencies
+/target
+Cargo.lock
+
+# Simulation output files
+*.json
+*.jsonl
+*.txt
