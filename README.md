@@ -1,4 +1,42 @@
 <<<<<<< HEAD
+# 🧠 Deasia Craig’s Enhanced AWS Badge Access Simulator
+
+This repository contains my customized version of the **AWS Badge Access Simulator**, originally created by Amazon’s Security Engineering team.  
+I expanded upon the project by completing both **security detection challenges** and implementing **additional anomaly detection logic** to strengthen event analysis.
+
+---
+
+## 💻 My Contributions
+- **Completed both official AWS challenges:**
+  - Detecting cloned badge activity (impossible traveler detection)
+  - Identifying “curious users” attempting unauthorized access
+- **Developed an extended `analysis.rs` module** to improve anomaly reporting and detection accuracy.
+- Enhanced **`main.rs`** to include optimized logic for variance handling and security event analysis.
+- Structured and cleaned the codebase with a new `.gitignore` for Rust environments.
+
+---
+
+## ⚙️ Technologies Used
+- **Language:** Rust 🦀  
+- **Frameworks/Tools:** Cargo, JSON, AWS Simulation Framework  
+- **Focus Areas:** Security anomaly detection, event streaming, data analysis
+
+---
+
+## 📂 Repository Purpose
+This simulation models real-world badge access events across multiple locations and facilities. It supports advanced testing for:
+- Security analytics and behavior modeling  
+- Intrusion detection systems  
+- Machine learning feature engineering for user activity prediction
+
+---
+
+## 🧩 Collaborators & Acknowledgments
+Created as part of the **AWS Security Career Pathway** activity.  
+Originally authored by **Principal Security Engineer Karl Anderson** and adapted with custom logic by **Deasia Craig**.
+
+
+
 # Amazon AWS Security Career Pathway Activity: Badge Access Simulator
 
 This code is a Badge Access Simulator that generates days of simulated badge events to mimic real-world security badge access patterns. The system simulates thousands of users accessing facilities across multiple geographical locations with behavioral patterns, authorization violations, and security anomalies including impossible traveler scenarios.  This simulation is intended to be used to complete the AWS Security Career Pathway Activity below.
