@@ -1,12 +1,12 @@
 
-# 🧠 Deasia Craig’s Enhanced AWS Badge Access Simulator
+#  Deasia Craig’s Enhanced AWS Badge Access Simulator
 
 This repository contains my customized version of the **AWS Badge Access Simulator**, originally created by Amazon’s Security Engineering team.  
 I expanded upon the project by completing both **security detection challenges** and implementing **additional anomaly detection logic** to strengthen event analysis.
 
 ---
 
-## 💻 My Contributions
+##  My Contributions
 - **Completed both official AWS challenges:**
   - Detecting cloned badge activity (impossible traveler detection)
   - Identifying “curious users” attempting unauthorized access
@@ -16,7 +16,7 @@ I expanded upon the project by completing both **security detection challenges**
 
 ---
 
-## ⚙️ Technologies Used
+##  Technologies Used
 - **Language:** Rust 🦀  
 - **Frameworks/Tools:** Cargo, JSON, AWS Simulation Framework  
 - **Focus Areas:** Security anomaly detection, event streaming, data analysis
